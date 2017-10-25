@@ -31,16 +31,19 @@ s
 cat> np_nom,
 cat> vp. 
 
+vprule rule
 vp
 ===>
 cat> v,
 cat> np_acc.
 
+pprule rule
 pp
 ===>
 cat> p,
 cat> np_acc.
 
+np_nomrule rule
 np_nom
 ===>
 cat> np.
