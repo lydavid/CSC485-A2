@@ -30,34 +30,22 @@ s
 ===>
 cat> np_nom,
 cat> vp. 
-
-vp_rule rule
 vp
 ===>
 cat> v,
 cat> np_acc.
-
-pp_rule rule
 pp
 ===>
 cat> p,
 cat> np_acc.
-
-np_nom_rule rule
 np_nom
 ===>
 cat> np.
-
-np_nom_rule rule
 np_nom
 ===>
 cat> pro_nom.
-
-np_acc_rule rule
 ===>
 cat> np.
-
-np_acc_rule rule
 np_acc
 ===>
 cat> pro_acc.
