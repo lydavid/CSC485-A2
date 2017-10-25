@@ -2,6 +2,7 @@
 
 bot sub [s,np,vp,pp,np_nom,np_acc,n,det,nsg,npl,pro_nom,pro_acc,v,p].
 
+
 s sub [].  
 np sub [].
 vp sub [].
@@ -30,55 +31,57 @@ s
 ===>
 cat> np_nom,
 cat> vp. 
+
 vp
 ===>
 cat> v,
 cat> np_acc.
+
 pp
 ===>
 cat> p,
 cat> np_acc.
+
 np_nom
 ===>
 cat> np.
+
 np_nom
 ===>
 cat> pro_nom.
+
+np_acc
 ===>
 cat> np.
+
 np_acc
 ===>
 cat> pro_acc.
 
-np_rule rule
 np
 ===>
 cat> det,
 cat> n.
 
-np_rule rule
 np
 ===>
 cat> det,
 cat> n,
 cat> pp.
 
-np_rule rule
+np
 ===>
 cat> npl.
 
-np_rule rule
 np
 ===>
 cat> npl,
 cat> pp.
 
-n_rule rule
 n
 ===>
 cat> nsg.
 
-n_rule rule
 n
 ===>
 cat> npl.
