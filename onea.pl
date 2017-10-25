@@ -31,59 +31,66 @@ s
 cat> np_nom,
 cat> vp. 
 
-vprule rule
+vp_rule rule
 vp
 ===>
 cat> v,
 cat> np_acc.
 
-pprule rule
+pp_rule rule
 pp
 ===>
 cat> p,
 cat> np_acc.
 
-np_nomrule rule
+np_nom_rule rule
 np_nom
 ===>
 cat> np.
 
+np_nom_rule rule
 np_nom
 ===>
 cat> pro_nom.
 
-np_acc
+np_acc_rule rule
 ===>
 cat> np.
 
+np_acc_rule rule
 np_acc
 ===>
 cat> pro_acc.
 
+np_rule rule
 np
 ===>
 cat> det,
 cat> n.
 
+np_rule rule
 np
 ===>
 cat> det,
 cat> n,
 cat> pp.
 
-np
+np_rule rule
 ===>
 cat> npl.
 
+np_rule rule
 np
 ===>
 cat> npl,
 cat> pp.
 
+n_rule rule
 n
 ===>
 cat> nsg.
 
+n_rule rule
 n
 ===>
 cat> npl.
