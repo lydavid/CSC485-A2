@@ -1,4 +1,7 @@
-bot sub [mood, tense, sem, cat, pos, semantic].
+:- ale_flag(subtypecover,_,off).
+:- discontiguous sub/2,intro/2.
+
+bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
 	% parts of speech
         pos sub [n,p,v,det,toinf].
@@ -9,22 +12,21 @@ bot sub [mood, tense, sem, cat, pos, semantic].
                 det sub [].
 	% phrasal categories
 	cat sub [vproj,np].
-		vproj sub [inf_clause,s,vp].
-			s sub [] intro [mood:indicative].
-                        inf_clause sub [] intro [mood:infinitive].
-			vp sub [].
+		vproj sub [inf_clause,s,vp] intro [mood:mood].
+			s intro [mood:indicative].
+                        inf_clause intro [mood:infinitive].
+			vp intro [mood:indicative].
 		np sub [].
 
-        semantic sub [verbal, nominal] intro [sem:sem].
-          verbal sub [v,vproj] intro [sem:v_sem, mood:mood].
-          nominal sub [n,np] intro [sem:n_sem].
+        verbal sub [v,vproj] intro [vsem:n_sem].
+        nominal sub [n,np] intro [nsem:v_sem].
 	
 	% mood and tense for verbs
 	tense sub [past, present].
 		past sub [].	
 		present sub [].
         mood sub [indicative,infinitive].
-                indicative sub [tense:tense].
+                indicative intro [tense:tense].
                 infinitive sub [].
 
 	% semantics for verbs and nouns
