@@ -13,7 +13,7 @@ index sub [] intro [c:case, n:number, t:type].
         pronoun sub [].
 
 % declare the parts of speech
-cat sub [s,np,vp,pp,p,det].
+cat sub [s,np,vp,pp,p,det,v].
     s sub [].
     noun sub [] intro [index:index]. % declare noun with index var
     np sub [] intro [head:noun]. % noun phrase with head as noun [head is used to pass down index var to other rules]
@@ -22,6 +22,7 @@ cat sub [s,np,vp,pp,p,det].
     p sub [].
 
 det sub [].
+v sub [].
 
 % specify their grammar features
 she ---> (noun, index:(c:nom)). %n.
