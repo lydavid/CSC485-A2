@@ -43,7 +43,7 @@ with ---> p.
 srule rule
 s
 ===>
-cat> (np,head:(index:Index)),
+cat> (np,head:(index:(c:nom))),
 cat> (vp,subj:(head:(index:Index)),obj:(head:(index:Index))).
 
 % VP -> V NP
