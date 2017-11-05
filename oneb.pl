@@ -25,7 +25,7 @@ det sub [].
 
 % specify their grammar features
 she ---> (noun, index:(c:nom)). %n.
-fed ---> (vp, subj:(head:(index:(t:pronoun, c:nom)))) %v.
+fed ---> (vp, subj:(head:(index:(t:pronoun, c:nom)))). %v.
 the ---> det.
 dog ---> (noun, index:(c:nom,n:sing)). %n.
 dog ---> (noun, index:(c:acc,n:sing)). %n.
