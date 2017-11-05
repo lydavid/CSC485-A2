@@ -17,7 +17,7 @@ cat sub [s,np,vp,pp,p,det].
     s sub [].
     noun sub [] intro [index:index]. % declare noun with index var
     np sub [] intro [head:noun]. % noun phrase with head as noun [head is used to pass down index var to other rules]
-    vp sub [] intro [subj:np, obj:np]. % verb phrase with subject as np [subj is used to pass down index var to other rules]
+    vp sub [] intro [obj:np]. % verb phrase with subject as np [subj is used to pass down index var to other rules]
     pp sub [].
     p sub [].
 
@@ -43,8 +43,8 @@ with ---> p.
 srule rule
 s
 ===>
-cat> (np,head:(index:(c:nom))), % restricts to only allowing nominative
-cat> (vp,subj:(head:(index:Index)),obj:(head:(index:Index))).
+cat> (np,head:(index:Ind)), % restricts to only allowing nominative
+cat> (vp,obj:(head:(index:Index))).
 
 % VP -> V NP
 vp_rule rule
