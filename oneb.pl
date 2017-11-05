@@ -1,29 +1,37 @@
 % David Ly, lydavid1, 1001435501
 
-bot sub [s,np,vp,pp,np_nom,np_acc,n,det,nsg,npl,pro_nom,pro_acc,v,p].
+% declare the features
+index sub [] intro [c:case, n:number, t:type].
+case sub [nom, acc]. % nominative, accusative
+number sub [sing, plural]. % singular, plural
+type sub [common, pronoun]. % common noun, pronoun
+sing sub [].
+plural sub [].
+nom sub [].
+acc sub [].
+common sub [].
+pronoun sub [].
 
-
-s sub [].  
-np sub [].
-vp sub [].
+% declare the parts of speech
+cat sub [s,np,vp,pp,p,det].
+s sub [].
+noun sub [] intro [index:index]. % declare noun with index var
+np sub [] intro [head:noun]. % noun phrase with head as noun [head is used to pass down index var to other rules]
+vp sub [] intro [subj:np]. % verb phrase with subject as np [subj is used to pass down index var to other rules]
 pp sub [].
-np_nom sub [].
-np_acc sub [].
-n sub [].
+p sub [].
+
 det sub [].
-nsg sub [].
-npl sub [].
-pro_nom sub [].
-pro_acc sub [].
-v sub [].
 
 % specify their grammar features
-she ---> n.
-fed ---> v.
+she ---> (noun, index:(c:nom)). %n.
+fed ---> (vp, subj:(head:(index:(t:pronoun, c:nom)))) %v.
 the ---> det.
-dog ---> n.
-puppies ---> n.
-him ---> n.
+dog ---> (noun, index:(c:nom,n:sing)). %n.
+dog ---> (noun, index:(c:acc,n:sing)). %n.
+puppies ---> (noun, index:(c:nom,n:plural)). %n.
+puppies ---> (noun, index:(c:acc,n:plural)). %n.
+him ---> (noun, index:(c:acc)). %n.
 with ---> p.
 
 % augment Grammar 2 with features so as to restrict it to the language of Grammar 1
@@ -35,8 +43,8 @@ with ---> p.
 srule rule
 s
 ===>
-cat> np,
-cat> vp. 
+cat> (np,head:(index:Index)),
+cat> (vp,subj:(head:(index:Index))).
 
 % VP -> V NP
 vp_rule rule
@@ -52,24 +60,25 @@ cat> np.
 
 % NP -> N
 np_rule rule
-np
-cat> n.
+(np,head:(index:Index))
+===>
+cat> (noun,index:Index).
 
 % NP -> Det N
 np_rule rule
-np
+(np,head:(index:Index))
 cat> det,
-cat> n.
+cat> (noun,index:Index).
 
 % NP -> Det N PP
 np_rule rule
-np
+(np,head:(index:Index))
 cat> det,
-cat> n,
+cat> (noun,index:Index),
 cat> pp.
 
 % NP -> N PP
 np_rule rule
-np
-cat> n,
+(np,head:(index:Index))
+cat> (noun,index:Index),
 cat> pp.
