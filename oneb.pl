@@ -25,14 +25,14 @@ det sub [].
 v sub [].
 
 % specify their grammar features
-she ---> (noun, index:(c:nom)). %n.
+she ---> (noun, index:(c:nom,t:pronoun)). %n.
 fed ---> v. %(v, obj:(head:(index:(c:acc)))). %v.
 the ---> det.
-dog ---> (noun, index:(c:nom,n:sing)). %n.
-dog ---> (noun, index:(c:acc,n:sing)). %n.
-puppies ---> (noun, index:(c:nom,n:plural)). %n.
-puppies ---> (noun, index:(c:acc,n:plural)). %n.
-him ---> (noun, index:(c:acc)). %n.
+dog ---> (noun, index:(c:nom,n:sing,t:common)). %n.
+dog ---> (noun, index:(c:acc,n:sing,t:common)). %n.
+puppies ---> (noun, index:(c:nom,n:plural,t:common)). %n.
+puppies ---> (noun, index:(c:acc,n:plural,t:common)). %n.
+him ---> (noun, index:(c:acc,t:pronoun)). %n.
 with ---> p.
 
 % augment Grammar 2 with features so as to restrict it to the language of Grammar 1
@@ -63,28 +63,28 @@ cat> np.
 
 % NP -> N
 np_rule rule
-(np,head:(index:(n:plural)))
+(np,head:(index:(n:plural; t:pronoun)))
 ===>
-cat> (noun,index:(n:plural)). % this rule allows it to accept she, which is a problem
+cat> (noun,index:(n:plural; t:pronoun)). % this rule allows it to accept she, which is a problem
 
 % NP -> Det N
 np_rule rule
-(np,head:(index:(n:sing;plural))) % should accept plural as well
+(np,head:(index:(t:common))) % should accept plural as well
 ===>
 cat> det,
-cat> (noun,index:(n:sing;plural)).
+cat> (noun,index:(t:common)).
 
 % NP -> Det N PP
 np_rule rule
-(np,head:(index:(n:sing)))
+(np,head:(index:(t:common)))
 ===>
 cat> det,
-cat> (noun,index:(n:sing)),
+cat> (noun,index:(t:common)),
 cat> pp.
 
 % NP -> N PP
 np_rule rule
-(np,head:(index:(n:plural)))
+(np,head:(index:(n:plural; t:pronoun)))
 ===>
-cat> (noun,index:(n:plural)),
+cat> (noun,index:(n:plural; t:pronoun)),
 cat> pp.
