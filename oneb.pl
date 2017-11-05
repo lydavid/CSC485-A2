@@ -63,9 +63,9 @@ cat> np.
 
 % NP -> N
 np_rule rule
-(np,head:(index:Index))
+(np,head:(index:(n:plural)))
 ===>
-cat> (noun,index:Index).
+cat> (noun,index:(n:plural)).
 
 % NP -> Det N
 np_rule rule
