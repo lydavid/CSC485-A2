@@ -45,14 +45,14 @@ srule rule
 s
 ===>
 cat> (np,head:(index:(c:nom))), % restricts to only allowing nominative
-cat> (vp,obj:(head:(index:Index))).
+cat> (vp,obj:(head:(index:(c:acc)))).
 
 % VP -> V NP
 vp_rule rule
-(vp,obj:(head:(index:Index)))
+(vp,obj:(head:(index:(c:acc))))
 ===>
 cat> v,
-cat> (np,head:(index:Index)).
+cat> (np,head:(index:(c:acc))).
 
 % PP -> P NP
 pp_rule rule
