@@ -43,18 +43,20 @@ with ---> p.
 srule rule
 s
 ===>
-cat> (np,head:(index:Ind)), % restricts to only allowing nominative
+cat> (np,head:(index:(c:nom))), % restricts to only allowing nominative
 cat> (vp,obj:(head:(index:Index))).
 
 % VP -> V NP
 vp_rule rule
 vp
+===>
 cat> v,
 cat> np.
 
 % PP -> P NP
 pp_rule rule
 pp
+===>
 cat> p,
 cat> np.
 
@@ -67,12 +69,14 @@ cat> (noun,index:Index).
 % NP -> Det N
 np_rule rule
 (np,head:(index:Index))
+===>
 cat> det,
 cat> (noun,index:Index).
 
 % NP -> Det N PP
 np_rule rule
 (np,head:(index:Index))
+===>
 cat> det,
 cat> (noun,index:Index),
 cat> pp.
@@ -80,5 +84,6 @@ cat> pp.
 % NP -> N PP
 np_rule rule
 (np,head:(index:Index))
+===>
 cat> (noun,index:Index),
 cat> pp.
