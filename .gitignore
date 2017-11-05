@@ -1,6 +1,10 @@
 a2_tut/
+grammar/
 grammar0.pl
 grammar1.pl
 grammar2.pl
+grammar3.pl
+interrogative_sample.pl
 ale.pl
 ale3diff.pl
+.bashrc
