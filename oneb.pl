@@ -2,30 +2,30 @@
 
 % declare the features
 index sub [] intro [c:case, n:number, t:type].
-case sub [nom, acc]. % nominative, accusative
-number sub [sing, plural]. % singular, plural
-type sub [common, pronoun]. % common noun, pronoun
-sing sub [].
-plural sub [].
-nom sub [].
-acc sub [].
-common sub [].
-pronoun sub [].
+    case sub [nom, acc]. % nominative, accusative
+        nom sub [].
+        acc sub [].
+    number sub [sing, plural]. % singular, plural
+        sing sub [].
+        plural sub [].
+    type sub [common, pronoun]. % common noun, pronoun
+        common sub [].
+        pronoun sub [].
 
 % declare the parts of speech
 cat sub [s,np,vp,pp,p,det].
-s sub [].
-noun sub [] intro [index:index]. % declare noun with index var
-np sub [] intro [head:noun]. % noun phrase with head as noun [head is used to pass down index var to other rules]
-vp sub [] intro [subj:np, obj:np]. % verb phrase with subject as np [subj is used to pass down index var to other rules]
-pp sub [].
-p sub [].
+    s sub [].
+    noun sub [] intro [index:index]. % declare noun with index var
+    np sub [] intro [head:noun]. % noun phrase with head as noun [head is used to pass down index var to other rules]
+    vp sub [] intro [subj:np, obj:np]. % verb phrase with subject as np [subj is used to pass down index var to other rules]
+    pp sub [].
+    p sub [].
 
 det sub [].
 
 % specify their grammar features
 she ---> (noun, index:(c:nom)). %n.
-fed ---> (vp, subj:(head:(index:(t:pronoun, c:nom)))). %v.
+fed ---> (vp, obj:(head:(index:(c:acc)))). %v.
 the ---> det.
 dog ---> (noun, index:(c:nom,n:sing)). %n.
 dog ---> (noun, index:(c:acc,n:sing)). %n.
@@ -43,7 +43,7 @@ with ---> p.
 srule rule
 s
 ===>
-cat> (np,head:(index:(c:nom))),
+cat> (np,head:(index:(c:nom))), % restricts to only allowing nominative
 cat> (vp,subj:(head:(index:Index)),obj:(head:(index:Index))).
 
 % VP -> V NP
