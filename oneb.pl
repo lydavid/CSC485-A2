@@ -65,14 +65,14 @@ cat> np.
 np_rule rule
 (np,head:(index:(n:plural)))
 ===>
-cat> (noun,index:(n:plural)).
+cat> (noun,index:(n:plural)). % this rule allows it to accept she, which is a problem
 
 % NP -> Det N
 np_rule rule
-(np,head:(index:(n:sing)))
+(np,head:(index:(n:sing;plural))) % should accept plural as well
 ===>
 cat> det,
-cat> (noun,index:(n:sing)).
+cat> (noun,index:(n:sing;plural)).
 
 % NP -> Det N PP
 np_rule rule
