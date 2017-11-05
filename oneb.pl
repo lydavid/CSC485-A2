@@ -69,22 +69,22 @@ cat> (noun,index:(n:plural)).
 
 % NP -> Det N
 np_rule rule
-(np,head:(index:Index))
+(np,head:(index:(n:sing)))
 ===>
 cat> det,
-cat> (noun,index:Index).
+cat> (noun,index:(n:sing)).
 
 % NP -> Det N PP
 np_rule rule
-(np,head:(index:Index))
+(np,head:(index:(n:sing)))
 ===>
 cat> det,
-cat> (noun,index:Index),
+cat> (noun,index:(n:sing)),
 cat> pp.
 
 % NP -> N PP
 np_rule rule
-(np,head:(index:Index))
+(np,head:(index:(n:plural)))
 ===>
-cat> (noun,index:Index),
+cat> (noun,index:(n:plural)),
 cat> pp.
