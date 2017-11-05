@@ -25,7 +25,7 @@ det sub [].
 
 % specify their grammar features
 she ---> (noun, index:(c:nom)). %n.
-fed ---> (vp, obj:(head:(index:(c:acc)))). %v.
+fed ---> v. %(v, obj:(head:(index:(c:acc)))). %v.
 the ---> det.
 dog ---> (noun, index:(c:nom,n:sing)). %n.
 dog ---> (noun, index:(c:acc,n:sing)). %n.
@@ -48,10 +48,10 @@ cat> (vp,obj:(head:(index:Index))).
 
 % VP -> V NP
 vp_rule rule
-vp
+(vp,obj:(head:(index:Index)))
 ===>
 cat> v,
-cat> np.
+cat> (np,head:(index:Index)).
 
 % PP -> P NP
 pp_rule rule
