@@ -59,7 +59,7 @@ pp_rule rule
 pp
 ===>
 cat> p,
-cat> np.
+cat> (np,head:(index:(c:acc)).
 
 % NP -> N
 np_rule rule
