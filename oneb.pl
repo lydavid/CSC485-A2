@@ -28,6 +28,8 @@
 %        sing sub [].
 %        plural sub [].
 
+bot sub [case, number, cat].
+
 case sub [nom,acc].
     nom sub [].
     acc sub [].
