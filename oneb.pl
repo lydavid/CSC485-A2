@@ -28,10 +28,10 @@ cat sub [s,n,np,v,vp,p,pp,det].
 she ---> (n, case:nom, type:pronoun).
 fed ---> v.
 the ---> det.
-dog ---> (n, case:nom, number:sing, type:noun).
-dog ---> (n, case:acc, number:sing, type:noun).
-puppies ---> (n, case:nom, number:plural, type:noun).
-puppies ---> (n, case:acc, number:plural, type:noun).
+dog ---> (n, number:sing, type:noun).
+%dog ---> (n, case:acc, number:sing, type:noun).
+puppies ---> (n, number:plural, type:noun).
+%puppies ---> (n, case:acc, number:plural, type:noun).
 him ---> (n, case:acc, type:pronoun).
 with ---> p.
 
