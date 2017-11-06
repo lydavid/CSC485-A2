@@ -29,9 +29,7 @@ she ---> (n, case:nom, type:pronoun).
 fed ---> v.
 the ---> det.
 dog ---> (n, number:sing, type:noun).
-%dog ---> (n, case:acc, number:sing, type:noun).
 puppies ---> (n, number:plural, type:noun).
-%puppies ---> (n, case:acc, number:plural, type:noun).
 him ---> (n, case:acc, type:pronoun).
 with ---> p.
 
