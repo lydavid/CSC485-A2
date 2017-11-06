@@ -3,27 +3,27 @@
 
 bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
-	% parts of speech
-        pos sub [n,p,v,det,toinf].
-		toinf sub [].	% infinitival to
-                n sub [].
-                v sub [].
-                p sub [].
-                det sub [].
+	 % parts of speech
+   pos sub [n,p,v,det,toinf].
+	   toinf sub [].	% infinitival to
+     n sub [].
+     v sub [].
+     p sub [].
+     det sub [].
 	% phrasal categories
 	cat sub [vproj,np].
 		vproj sub [inf_clause,s,vp] intro [mood:mood].
 			s intro [mood:indicative].
-                        inf_clause intro [mood:infinitive].
+      inf_clause intro [mood:infinitive].
 			vp intro [mood:indicative].
 		np sub [].
 
         verbal sub [v,vproj] intro [vsem:v_sem]. % fixed from: verbal sub [v,vproj] intro [vsem:n_sem].
         nominal sub [n,np] intro [nsem:n_sem]. % fixed from: nominal sub [n,np] intro [nsem:v_sem].
-	
+
 	% mood and tense for verbs
 	tense sub [past, present].
-		past sub [].	
+		past sub [].
 		present sub [].
         mood sub [indicative,infinitive].
                 indicative intro [tense:tense].
