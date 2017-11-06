@@ -33,10 +33,10 @@ cat sub [s,np,vp,pp,p,det,v,n].
 she ---> (n, type:pronoun, case:nom).
 fed ---> v.
 the ---> det.
-dog ---> (n, case:nom, number:sing).
-dog ---> (n, case:acc, number:sing).
-puppies ---> (n, case:nom, number:plural).
-puppies ---> (n, case:acc, number:plural).
+dog ---> (n, type:noun, case:nom, number:sing).
+dog ---> (n, type:noun, case:acc, number:sing).
+puppies ---> (n, type:noun, case:nom, number:plural).
+puppies ---> (n, type:noun, case:acc, number:plural).
 him ---> (n, type:pronoun, case:acc).
 with ---> p.
 
@@ -99,9 +99,9 @@ cat> pp.
 %cat> (noun, number:plural).
 
 np_rule rule
-(np, head:(number:plural, case:Case, type:pronoun))
+(np, head:(number:plural, case:Case))
 ===>
-cat> (n, number:plural, case:Case, type:pronoun).
+cat> (n, number:plural, case:Case).
 
 % separating the rules like this is cheating?
 %np_rule rule
