@@ -102,7 +102,7 @@ cat> pp.
 % Grammar 1: NP -> Det Nsg | Det Npl
 % Grammar 2: NP -> Det N
 np_rule rule
-(np,head:noun) % should accept plural as well
+(np,head:noun)
 ===>
 cat> det,
 cat> noun.
@@ -119,6 +119,11 @@ cat> pp.
 % Grammar 1: NP -> Npl | PROnom | PROacc
 % Grammar 2: NP -> N
 np_rule rule
-(np,head:(number:plural))
+(np,head:(number:plural)) % should receive a var Case from srule
 ===>
 cat> (noun, number:plural). % this rule allows it to accept she, which is a problem
+
+np_rule rule
+(np,head:(case:Case))
+===>
+cat> (pronoun, case:Case).
