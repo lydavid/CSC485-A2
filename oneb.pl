@@ -69,7 +69,7 @@ cat> (np, head:(case:acc)).
 % Grammar 1: NP -> Npl PP
 % Grammar 2: NP -> N PP
 np_rule rule
-(np, head:(number:plural))
+(np, head:(number:plural, type:noun))
 ===>
 cat> (n, number:plural, type:noun),
 cat> pp.
@@ -77,7 +77,7 @@ cat> pp.
 % Grammar 1: NP -> Det Nsg | Det Npl
 % Grammar 2: NP -> Det N
 np_rule rule
-(np, head:noun)
+(np, head:(type:noun))
 ===>
 cat> det,
 cat> (n, type:noun).
@@ -85,7 +85,7 @@ cat> (n, type:noun).
 % Grammar 1: NP -> Det Nsg PP | Det Npl PP
 % Grammar 2: NP -> Det N PP
 np_rule rule
-(np, head:noun)
+(np, head:(type:noun))
 ===>
 cat> det,
 cat> (n, type:noun),
