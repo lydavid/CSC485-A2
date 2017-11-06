@@ -87,13 +87,18 @@ cat> pp.
 
 % Grammar 1: NP -> Npl | PROnom | PROacc
 % Grammar 2: NP -> N
+%np_rule rule
+%(np, head:(number:plural))
+%===>
+%cat> (noun, number:plural).
+
 np_rule rule
-(np, head:(number:plural))
+(np, head:(number:plural, case:Case))
 ===>
-cat> (noun, number:plural).
+cat> (n, number:plural, case:Case).
 
 % separating the rules like this is cheating?
-np_rule rule
-(np, head:(case:Case))
-===>
-cat> (pronoun, case:Case).
+%np_rule rule
+%(np, head:(case:Case))
+%===>
+%cat> (pronoun, case:Case).
