@@ -48,7 +48,7 @@ cat sub [s,np,vp,pp,p,det,v,n].
         pronoun sub [].
     np sub [] intro [head:n]. % noun phrase with head as noun [head is used to pass down index var to other rules]
     vp sub [] intro [obj:np]. % verb phrase with subject as np [subj is used to pass down index var to other rules]
-    pp sub [] intro [obj:np].
+    pp sub [] intro [obj2:np].
     p sub [].
 
     det sub [].
@@ -86,7 +86,7 @@ cat> (np,head:(case:acc)).
 % Grammar 1: PP -> P NP | P PROacc
 % Grammar 2: PP -> P NP
 pp_rule rule
-(pp,obj:(head:(case:acc)))
+(pp,obj2:(head:(case:acc)))
 ===>
 cat> p,
 cat> (np,head:(case:acc)).
