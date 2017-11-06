@@ -1,6 +1,6 @@
 % David Ly, lydavid1, 1001435501
 
-bot sub [case, number, cat, type].
+bot sub [case, number, type, cat].
 
 % declare features
 case sub [nom,acc].
@@ -14,30 +14,25 @@ type sub [noun, pronoun].
     pronoun sub [].
 
 % declare the categories
-cat sub [s,np,vp,pp,p,det,v,n].
+cat sub [s,n,np,v,vp,p,pp,det].
     s sub [].
-    %n sub [noun,pronoun] intro [case:case].
-    %    noun sub [] intro [number:number].
-    %    pronoun sub [].
-
     n sub [] intro [case:case, number:number, type:type].
-
     np sub [] intro [head:n]. % noun phrase with head as noun (top-level)
-    vp sub [] intro [obj_vp:np]. % verb phrase with object as np
-    pp sub [] intro [obj_pp:np]. % preposition phrase with object as np
-    p sub [].
-    det sub [].
     v sub [].
+    vp sub [] intro [obj_vp:np]. % verb phrase with object as np
+    p sub [].
+    pp sub [] intro [obj_pp:np]. % preposition phrase with object as np
+    det sub [].
 
 % specify their grammar features
-she ---> (n, type:pronoun, case:nom).
+she ---> (n, case:nom, type:pronoun).
 fed ---> v.
 the ---> det.
-dog ---> (n, type:noun, case:nom, number:sing).
-dog ---> (n, type:noun, case:acc, number:sing).
-puppies ---> (n, type:noun, case:nom, number:plural).
-puppies ---> (n, type:noun, case:acc, number:plural).
-him ---> (n, type:pronoun, case:acc).
+dog ---> (n, case:nom, number:sing, type:noun).
+dog ---> (n, case:acc, number:sing, type:noun).
+puppies ---> (n, case:nom, number:plural, type:noun).
+puppies ---> (n, case:acc, number:plural, type:noun).
+him ---> (n, case:acc, type:pronoun).
 with ---> p.
 
 % augment Grammar 2 with features so as to restrict it to the language of Grammar 1
