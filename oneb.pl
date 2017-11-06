@@ -1,6 +1,6 @@
 % David Ly, lydavid1, 1001435501
 
-bot sub [case, number, cat].
+bot sub [case, number, cat, type].
 
 % declare features
 case sub [nom,acc].
@@ -9,13 +9,19 @@ case sub [nom,acc].
 number sub [sing,plural].
     sing sub [].
     plural sub [].
+type sub [noun, pronoun].
+    noun sub [].
+    pronoun sub [].
 
 % declare the categories
 cat sub [s,np,vp,pp,p,det,v,n].
     s sub [].
-    n sub [noun,pronoun] intro [case:case].
-        noun sub [] intro [number:number].
-        pronoun sub [].
+    %n sub [noun,pronoun] intro [case:case].
+    %    noun sub [] intro [number:number].
+    %    pronoun sub [].
+
+    n sub [] intro [case:case, number:number, type:type].
+
     np sub [] intro [head:n]. % noun phrase with head as noun (top-level)
     vp sub [] intro [obj_vp:np]. % verb phrase with object as np
     pp sub [] intro [obj_pp:np]. % preposition phrase with object as np
@@ -24,14 +30,14 @@ cat sub [s,np,vp,pp,p,det,v,n].
     v sub [].
 
 % specify their grammar features
-she ---> (pronoun, case:nom).
+she ---> (n, type:pronoun, case:nom).
 fed ---> v.
 the ---> det.
-dog ---> (noun, case:nom, number:sing).
-dog ---> (noun, case:acc, number:sing).
-puppies ---> (noun, case:nom, number:plural).
-puppies ---> (noun, case:acc, number:plural).
-him ---> (pronoun, case:acc).
+dog ---> (n, case:nom, number:sing).
+dog ---> (n, case:acc, number:sing).
+puppies ---> (n, case:nom, number:plural).
+puppies ---> (n, case:acc, number:plural).
+him ---> (n, type:pronoun, case:acc).
 with ---> p.
 
 % augment Grammar 2 with features so as to restrict it to the language of Grammar 1
@@ -65,7 +71,7 @@ cat> (np, head:(case:acc)).
 np_rule rule
 (np, head:(number:plural))
 ===>
-cat> (noun, number:plural),
+cat> (n, number:plural, type:noun),
 cat> pp.
 
 % Grammar 1: NP -> Det Nsg | Det Npl
@@ -74,7 +80,7 @@ np_rule rule
 (np, head:noun)
 ===>
 cat> det,
-cat> noun.
+cat> (n, type:noun).
 
 % Grammar 1: NP -> Det Nsg PP | Det Npl PP
 % Grammar 2: NP -> Det N PP
@@ -82,7 +88,7 @@ np_rule rule
 (np, head:noun)
 ===>
 cat> det,
-cat> noun,
+cat> (n, type:noun),
 cat> pp.
 
 % Grammar 1: NP -> Npl | PROnom | PROacc
@@ -93,9 +99,9 @@ cat> pp.
 %cat> (noun, number:plural).
 
 np_rule rule
-(np, head:(number:plural, case:Case))
+(np, head:(number:plural, case:Case, type:pronoun))
 ===>
-cat> (n, number:plural, case:Case).
+cat> (n, number:plural, case:Case, type:pronoun).
 
 % separating the rules like this is cheating?
 %np_rule rule
