@@ -35,6 +35,8 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 	sem sub [v_sem, n_sem].
 
         % only add features for v_sem and its subtypes
+        % nope, can add types anywhere such as subtyping existing types,
+        % just don't alter what's already given (ie rearrange hierarchy)
 
 		% semantics for verbs
 		v_sem sub [prefer, persuade, promise, expect, sleep]
