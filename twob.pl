@@ -52,3 +52,16 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 		n_sem sub [student, teacher].
 			student sub [].
 			teacher sub [].
+
+% add lexicon? using sem that matches itself
+the ---> det.
+student ---> n.
+teacher ---> n.
+preferred ---> v.
+persuaded ---> v.
+promised ---> v.
+expected ---> v.
+to ---> toinf.
+sleep ---> v.
+
+% add rules
