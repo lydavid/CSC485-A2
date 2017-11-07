@@ -65,3 +65,46 @@ to ---> toinf.
 sleep ---> v.
 
 % add rules
+
+% S -> NP VP
+
+
+% VP -> V NP
+% "...'persuaded/promised/preferred' 'the teacher'"
+% *"the student expected the teacher" -> actually kinda makes sense
+
+% VP -> V inf_clause
+% "...'preferred/expected/promised' 'to sleep'"
+% *"the student persuaded to sleep"
+
+% VP -> V NP inf_clause
+% "...'persuaded/promised' 'the teacher' 'to sleep'"
+% *"the student preferred the teacher to sleep"
+% "the student expected the teacher to sleep" is correct, but not of this form, coincidence it's accepted here
+
+% VP -> V complement?
+% "...'expected' 'the teacher to sleep'"
+% persuaded/promised needs to assign beneficiary AND theme, but only has a complement constituent here
+% *"the student preferred the teacher to sleep"
+
+% VP -> V S
+% "...'expected' 'the teacher persuaded the student to sleep'"
+% *"the student promised the teacher persuaded the student to sleep" -> promise needs beneficiary AND theme
+% *"the student preferred the teacher persuaded the student to sleep"
+% *"the student persuaded the teacher promised the student to sleep"
+
+% VP -> V NP S
+% "...'promised' 'the teacher' 'the student preferred to sleep'"
+
+% NP -> Det N
+% "the teacher"
+% "the student"
+% won't ever have NP -> N in this grammar, so ignore it
+
+% inf_clause -> toinf V
+% "...to sleep"
+% can't use with any other verb here, cause they aren't in infinitive form (not base)
+
+
+% special cases
+% "the student promised" is definitely grammatical
