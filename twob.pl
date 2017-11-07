@@ -57,12 +57,12 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:prefer, tense:past).
-persuaded ---> (v, vsem:persuade, tense:past).
-promised ---> (v, vsem:promise, tense:past).
-expected ---> (v, vsem:expect, tense:past).
+preferred ---> (v, vsem:prefer).
+persuaded ---> (v, vsem:persuade).
+promised ---> (v, vsem:promise).
+expected ---> (v, vsem:expect).
 to ---> toinf.
-sleep ---> (v, vsem:sleep, tense:present).
+sleep ---> (v, vsem:sleep).
 
 % add rules
 
