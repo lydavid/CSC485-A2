@@ -1,3 +1,4 @@
+% David Ly, lydavid1, 1001435501
 :- ale_flag(subtypecover,_,off).
 :- discontiguous sub/2,intro/2.
 
