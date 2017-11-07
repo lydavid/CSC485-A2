@@ -31,6 +31,18 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
         indicative intro [tense:tense]. % indicative has var tense that can take on values from tense
         infinitive sub [].
 
+    % sentences and verb phrases take on indicative mood -> which have tense and should match throughout
+        % The indicative mood is used to make factual statements, ask questions,
+        %   or express opinions as if they were facts. Any verb tense may be deployed in the indicative mood.
+
+    % infinitive clause takes on infinitive mood -> which don't have tense
+        % Verbs in the infinitive mood are used as parts of speech more than verbs. It expresses being or action.
+        %   I may go to the beach later.
+        %   They came to speak to me.
+        %   It's important to eat well.
+
+
+
 	% semantics for verbs and nouns
 	sem sub [v_sem, n_sem].
 
@@ -39,8 +51,8 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
         % just don't alter what's already given (ie rearrange hierarchy)
 
 		% semantics for verbs
-		v_sem sub [prefer, persuade, promise, expect, sleep].
-                %intro [].   % This should not be empty!  Fill in features for this and
+		v_sem sub [prefer, persuade, promise, expect, sleep]
+                intro [tense:tense].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
 			prefer sub []. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
 			persuade sub [].
@@ -57,12 +69,12 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:prefer).
-persuaded ---> (v, vsem:persuade).
-promised ---> (v, vsem:promise).
-expected ---> (v, vsem:expect).
+preferred ---> (v, vsem:(tense:past)).
+persuaded ---> (v, vsem:(tense:past)).
+promised ---> (v, vsem:(tense:past)).
+expected ---> (v, vsem:(tense:past)).
 to ---> toinf.
-sleep ---> (v, vsem:sleep).
+sleep ---> (v, vsem:(tense:present)).
 
 % add rules
 
