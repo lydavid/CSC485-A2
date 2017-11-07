@@ -1,0 +1,39 @@
+% David Ly, lydavid1, 1001435501
+EXAMPLE
+i) the student preferred to sleep
+
+  preferred
+    AGENT: the student
+    THEME: to sleep
+  sleep:
+    EXPERIENCER: the student
+
+
+ANSWERS
+ii) the student persuaded the teacher to sleep
+
+  persuaded
+    AGENT: the student (given)
+    THEME: to sleep (only constituent left)
+    BENEFICIARY: the teacher (given)
+  sleep
+    EXPERIENCER: the teacher
+
+
+iii) the student promised the teacher to sleep
+
+  promised
+    AGENT: the student (volitional cause of the promise)
+    THEME: to sleep (the promise is about sleeping)
+    BENEFICIARY: the teacher (benefits from the promise)
+  sleep
+    EXPERIENCER: the student
+
+
+iv) the student expected the teacher to sleep
+
+  expected
+   AGENT: the student (they cause the expectation)
+   THEME: the teacher to sleep (receives the expectation)
+  sleep
+   EXPERIENCER: the teacher
