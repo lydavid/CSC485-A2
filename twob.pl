@@ -42,7 +42,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 		v_sem sub [prefer, persuade, promise, expect, sleep]
                 intro [].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
-			prefer sub [preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
+			prefer sub []. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
 			persuade sub [].
 			promise sub [].
 			expect sub [].
