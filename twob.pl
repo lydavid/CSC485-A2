@@ -42,7 +42,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 		v_sem sub [prefer, persuade, promise, expect, sleep]
                 intro [].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
-			prefer sub [].
+			prefer sub [preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
 			persuade sub [].
 			promise sub [].
 			expect sub [].
@@ -55,27 +55,41 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
 % add lexicon? using sem that matches itself
 the ---> det.
-student ---> n.
-teacher ---> n.
-preferred ---> v.
-persuaded ---> v.
-promised ---> v.
-expected ---> v.
+student ---> (n, nsem:student).
+teacher ---> (n, nsem:teacher).
+preferred ---> (v, tense:past).
+persuaded ---> (v, tense:past).
+promised ---> (v, tense:past).
+expected ---> (v, tense:past).
 to ---> toinf.
-sleep ---> v.
+sleep ---> (v, tense:present).
 
 % add rules
 
 % S -> NP VP
-
+srule rule
+s
+===>
+cat> np,
+cat> vp.
 
 % VP -> V NP
 % "...'persuaded/promised/preferred' 'the teacher'"
 % *"the student expected the teacher" -> actually kinda makes sense
+vp_rule rule
+vp
+===>
+cat> v,
+cat> np.
 
 % VP -> V inf_clause
-% "...'preferred/expected/promised' 'to sleep'"
+% "...'preferred/expected/promised' 'to sleep'" -> all confirmed grammatically correct on bb
 % *"the student persuaded to sleep"
+vp_rule rule
+vp
+===>
+cat> v,
+cat> inf_clause.
 
 % VP -> V NP inf_clause
 % "...'persuaded/promised' 'the teacher' 'to sleep'"
@@ -100,11 +114,20 @@ sleep ---> v.
 % "the teacher"
 % "the student"
 % won't ever have NP -> N in this grammar, so ignore it
+np_rule rule
+np
+===>
+cat> det,
+cat> n.
 
 % inf_clause -> toinf V
 % "...to sleep"
 % can't use with any other verb here, cause they aren't in infinitive form (not base)
-
+inf_clause_rule rule
+inf_clause
+===>
+cat> toinf,
+cat> v.
 
 % special cases
 % "the student promised" is definitely grammatical
