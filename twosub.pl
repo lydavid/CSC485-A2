@@ -33,6 +33,8 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 	% semantics for verbs and nouns
 	sem sub [v_sem, n_sem].
 
+        % only add features for v_sem and its subtypes
+
 		% semantics for verbs
 		v_sem sub [prefer, persuade, promise, expect, sleep]
                 intro [].   % This should not be empty!  Fill in features for this and
