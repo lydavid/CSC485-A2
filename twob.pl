@@ -52,7 +52,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 
 		% semantics for verbs
 		v_sem sub [prefer, persuade, promise, expect, sleep]
-                intro [tense:tense].   % This should not be empty!  Fill in features for this and
+                intro [vtense:tense].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
 			prefer sub []. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
 			persuade sub [].
@@ -69,12 +69,12 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:(tense:past)).
-persuaded ---> (v, vsem:(tense:past)).
-promised ---> (v, vsem:(tense:past)).
-expected ---> (v, vsem:(tense:past)).
+preferred ---> (v, vsem:(vtense:past)).
+persuaded ---> (v, vsem:(vtense:past)).
+promised ---> (v, vsem:(vtense:past)).
+expected ---> (v, vsem:(vtense:past)).
 to ---> toinf.
-sleep ---> (v, vsem:(tense:present)).
+sleep ---> (v, vsem:(vtense:present)).
 
 % add rules
 
