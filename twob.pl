@@ -187,7 +187,7 @@ cat> (v, vsem:(vtense:present)).
 
 
 inf_clause_rule rule
-(inf_clause, vsem:(vtense:past, subj:Subj, obj:Gap, ref:Gap))
+(inf_clause, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap))
 ===>
 cat> np,
 cat> toinf,
