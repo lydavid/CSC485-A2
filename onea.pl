@@ -4,7 +4,7 @@
 bot sub [s,np,vp,pp,
         np_nom,np_acc,
         nsg,npl,pro_nom,pro_acc,
-        n, det, v].
+        n,det,v,p].
     s sub [].
     np sub [].
     vp sub [].
@@ -21,6 +21,7 @@ bot sub [s,np,vp,pp,
     n sub [].
     det sub [].
     v sub [].
+    p sub [].
 
 % Lexicon
 she ---> pro_nom.
