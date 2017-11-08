@@ -98,7 +98,7 @@ cat> np.
 % "...'preferred/expected/promised' 'to sleep'" -> all confirmed grammatically correct on bb
 % *"the student persuaded to sleep"
 vp_rule rule
-vp
+(vp, mood:(tense:past))
 ===>
 cat> v,
 cat> inf_clause.
@@ -139,7 +139,7 @@ inf_clause_rule rule
 inf_clause
 ===>
 cat> toinf,
-cat> v.
+cat> (v, vsem:(vtense:present)).
 
 % special cases
 % "the student promised" is definitely grammatical
