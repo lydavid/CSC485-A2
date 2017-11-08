@@ -80,18 +80,18 @@ sleep ---> (v, vsem:(vtense:present)).
 
 % S -> NP VP
 srule rule
-s
+(s, mood:(tense:Tense))
 ===>
 cat> np,
-cat> vp.
+cat> (vp, mood:(tense:Tense)).
 
 % VP -> V NP
 % "...'persuaded/promised/preferred' 'the teacher'"
 % *"the student expected the teacher" -> actually kinda makes sense
 vp_rule rule
-vp
+(vp, mood:(tense:Tense))
 ===>
-cat> v,
+cat> (v, vsem:(vtense:Tense)),
 cat> np.
 
 % VP -> V inf_clause
