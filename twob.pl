@@ -77,7 +77,7 @@ persuaded ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)). % don't nee
 promised ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)).
 expected ---> (v, vsem:(vtense:past, subj:agent, obj:theme)).
 to ---> toinf.
-sleep ---> (v, vsem:(vtense:present, obj:Role)).
+sleep ---> (v, vsem:(vtense:present, obj:Role)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
 % add rules
 
@@ -128,6 +128,11 @@ cat> inf_clause.
 % *"the student promised the teacher persuaded the student to sleep" -> promise needs beneficiary AND theme
 % *"the student preferred the teacher persuaded the student to sleep"
 % *"the student persuaded the teacher promised the student to sleep"
+vp_rule rule
+(vp, mood:(tense:Tense))
+===>
+cat> (v, vsem:(vtense:Tense)),
+cat> (s, mood:(tense:Tense)).
 
 % VP -> V NP S
 % "...'promised' 'the teacher' 'the student preferred to sleep'"
