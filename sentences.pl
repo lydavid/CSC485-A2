@@ -3,6 +3,7 @@
 % TRIVIAL CASES
 % student is not a complete noun phrase
 test_sent([student,preferred,to,sleep], fails).
+test_sent([the,student,sleep,the,teacher], fails).
 
 
 % NP V_past inf_clause
@@ -21,11 +22,11 @@ test_sent([the,student,expected,the,teacher,to,sleep]). % "the teacher to sleep"
 test_sent([the,student,preferred,the,teacher,to,sleep], fails). % preferred cannot assign themes to 3 constituents, or its theme cannot be inf_clause that begins with NP
 
 
-
-
-
 % NP V_past NP
 test_sent([the,student,preferred,the,teacher]).
 test_sent([the,student,persuaded,the,teacher]).
 test_sent([the,student,promised,the,teacher]).
 test_sent([the,student,expected,the,teacher], fails). % this actually sounds grammatical
+
+test_sent([the,student,expected,the,teacher,persuaded,the,student,to,sleep]).
+test_sent([the,student,preferred,the,teacher,persuaded,the,student,to,sleep], fails).

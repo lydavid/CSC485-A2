@@ -145,7 +145,7 @@ cat> inf_clause.
 vp_rule rule
 (vp, mood:(tense:Tense))
 ===>
-cat> (v, vsem:(vtense:Tense)),
+cat> (v, vsem:(vtense:Tense, obj:expectee)),
 cat> (s, mood:(tense:Tense)).
 
 % VP -> V NP S
