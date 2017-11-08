@@ -1,23 +1,23 @@
 % David Ly, lydavid1, 1001435501
 
 % Declare types
-bot sub [s,np,vp,pp].
+bot sub [s,np,vp,pp,
+        np_nom,np_acc,
+        nsg,npl,pro_nom,pro_acc,
+        n, det, v].
     s sub [].
     np sub [].
     vp sub [].
     pp sub [].
 
-bot sub [np_nom,np_acc].
     np_nom sub [].
     np_acc sub [].
 
-bot sub [nsg,npl,pro_nom,pro_acc].
     nsg sub [].
     npl sub [].
     pro_nom sub [].
     pro_acc sub [].
 
-bot sub [n, det, v].
     n sub [].
     det sub [].
     v sub [].
