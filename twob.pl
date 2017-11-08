@@ -56,9 +56,6 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
             preferree sub [].
             expectee sub []. % obj of sleep
 
-    num_assignable_roles sub [two,three].
-        two sub [].
-        three sub[].
 
 	% semantics for verbs and nouns
 	sem sub [v_sem, n_sem].
@@ -91,10 +88,10 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree, nar:two, ref:preferrer)).
-persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, nar:three, ref:persuadee)). % don't need to assign role to theme (which will be an inf_clause)
-promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, nar:three, ref:promiser)).
-expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, nar:two, ref:expectee)).
+preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree, ref:preferrer)).
+persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, ref:persuadee)). % don't need to assign role to theme (which will be an inf_clause)
+promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, ref:promiser)).
+expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, ref:expectee)).
 to ---> toinf.
 sleep ---> (v, vsem:(vtense:present, obj:Role)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
@@ -102,10 +99,10 @@ sleep ---> (v, vsem:(vtense:present, obj:Role)). % when this =agent, that means 
 
 % S -> NP VP
 srule rule
-(s, mood:(tense:past))
+(s, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap))%mood:(tense:past))
 ===>
 cat> np,
-cat> (vp, mood:(tense:past)).
+cat> (vp, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap)).%mood:(tense:past)).
 
 % VP -> V NP
 % "...'persuaded/promised/preferred' 'the teacher'" -> don't actually need to handle "promised the teacher", cause for this assignment, promise should assign 3 thematic roles
@@ -122,7 +119,7 @@ cat> np.
 % just handle preferred/expected for now (both of which has theme as its obj)
 % *"the student persuaded to sleep"
 vp_rule rule
-(vp, mood:(tense:Tense))
+(vp, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap))%mood:(tense:Tense))
 ===>
 cat> (v, vsem:(vtense:Tense, obj:theme)),
 cat> (inf_clause, vsem:(obj:theme)).
