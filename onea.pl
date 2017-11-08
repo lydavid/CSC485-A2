@@ -1,23 +1,28 @@
 % David Ly, lydavid1, 1001435501
 
-bot sub [s,np,vp,pp,np_nom,np_acc,n,det,nsg,npl,pro_nom,pro_acc,v,p].
+% Declare types
+bot sub [s,np,vp,pp].
+    s sub [].
+    np sub [].
+    vp sub [].
+    pp sub [].
 
+bot sub [np_nom,np_acc]
+    np_nom sub [].
+    np_acc sub [].
 
-s sub [].  
-np sub [].
-vp sub [].
-pp sub [].
-np_nom sub [].
-np_acc sub [].
-n sub [].
-det sub [].
-nsg sub [].
-npl sub [].
-pro_nom sub [].
-pro_acc sub [].
-v sub [].
+bot sub [nsg,npl,pro_nom,pro_acc].
+    nsg sub [].
+    npl sub [].
+    pro_nom sub [].
+    pro_acc sub [].
 
+bot sub [n, det, v].
+    n sub [].
+    det sub [].
+    v sub [].
 
+% Lexicon
 she ---> pro_nom.
 fed ---> v.
 the ---> det.
@@ -26,11 +31,12 @@ puppies ---> npl.
 him ---> pro_acc.
 with ---> p.
 
+% Grammar Rules
 srule rule
 s
 ===>
 cat> np_nom,
-cat> vp. 
+cat> vp.
 
 vp_rule rule
 vp
