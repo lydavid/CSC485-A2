@@ -7,8 +7,8 @@ test_sent([the,student,sleep,the,teacher], fails).
 % NP V_past inf_clause
 test_sent([the,student,preferred,to,sleep]).
 test_sent([the,student,expected,to,sleep]). % NP expected inf_clause (beginning with toinf)
-test_sent([the,student,promised,to,sleep]). % apparently, we don't have to handle these? -> currently, we don't handle it
-test_sent([the,student,persuaded,to,sleep], fails). % 100% certain
+test_sent([the,student,promised,to,sleep], fails). % promised/persuaded takes 3 constituents
+test_sent([the,student,persuaded,to,sleep], fails).
 
 % NP V_past NP inf_clause
 test_sent([the,student,persuaded,the,teacher,to,sleep]).
@@ -20,9 +20,9 @@ test_sent([the,student,preferred,the,teacher,to,sleep], fails). % preferred cann
 
 % NP V_past NP
 test_sent([the,student,preferred,the,teacher]).
-test_sent([the,student,persuaded,the,teacher]). % currently not handled as assignment says persuaded/promised takes 3 constituents
-test_sent([the,student,promised,the,teacher]). % currently not handled
-test_sent([the,student,expected,the,teacher], fails). % this actually sounds grammatical
+test_sent([the,student,persuaded,the,teacher], fails). % not handled as assignment says persuaded/promised takes 3 constituents
+test_sent([the,student,promised,the,teacher], fails).
+test_sent([the,student,expected,the,teacher], fails). % sounds like a fragment
 
 % NP V_past S
 test_sent([the,student,expected,the,teacher,persuaded,the,student,to,sleep]).
