@@ -28,6 +28,9 @@ test_sent([the,student,expected,the,teacher], fails). % this actually sounds gra
 test_sent([the,student,expected,the,teacher,persuaded,the,student,to,sleep]).
 test_sent([the,student,preferred,the,teacher,persuaded,the,student,to,sleep], fails).
 
+test_sent([the,student,preferred,the,teacher]). % NP V NP
+
 % grammatically correct sentences our grammar does not parse
 test_sent([the,student,promised], fails). % NP V
+test_sent([the,student,promised,the,teacher], fails). % NP V NP
 test_sent([the,student,promised,the,teacher,the,student,preferred,to,sleep], fails). % NP V NP S
