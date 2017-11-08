@@ -54,7 +54,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
                 % subj: which role is the subject of the verb
                 % obj: which role is the object of the verb
                 % ref: which role of the verb will be referenced as the obj of a later verb (sleep)
-                intro [vtense:tense, subj:role, obj:role, ref:role].
+                intro [vtense:tense, subj:n_sem, obj:n_sem, ref:n_sem].
 
 			prefer sub [].
 			persuade sub [].
@@ -71,10 +71,11 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree, ref:preferrer)).
-persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, ref:persuadee)). % don't need to assign role to theme (which will be an inf_clause)
-promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, ref:promiser)).
-expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, ref:expectee)).
+%preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree, ref:preferrer)).
+preferred ---> (v, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Subj))
+%persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, ref:persuadee)). % don't need to assign role to theme (which will be an inf_clause)
+%promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, ref:promiser)).
+%expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, ref:expectee)).
 to ---> toinf.
 sleep ---> (v, vsem:(vtense:present, obj:Role, ref:expectee)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
