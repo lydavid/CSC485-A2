@@ -77,7 +77,7 @@ persuaded ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)). % don't nee
 promised ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)).
 expected ---> (v, vsem:(vtense:past, subj:agent, obj:theme)).
 to ---> toinf.
-sleep ---> (v, vsem:(vtense:present, obj:Role)).
+sleep ---> (v, vsem:(vtense:present, obj:agent)).
 
 % add rules
 
