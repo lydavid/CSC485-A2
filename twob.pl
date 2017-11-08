@@ -93,7 +93,7 @@ persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, ref:persuad
 promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, ref:promiser)).
 expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, ref:expectee)).
 to ---> toinf.
-sleep ---> (v, vsem:(vtense:present, obj:Role)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
+sleep ---> (v, vsem:(vtense:present, obj:Role, ref:expectee)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
 % add rules
 
@@ -191,7 +191,7 @@ inf_clause_rule rule
 ===>
 cat> np,
 cat> toinf,
-cat> (v, vsem:(vtense:present, obj:Gap)).
+cat> (v, vsem:(vtense:present, ref:Gap)).
 
 % special cases
 % "the student promised" is definitely grammatical -> sentence fragment?
