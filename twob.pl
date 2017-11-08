@@ -66,7 +66,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 
 		% semantics for verbs
 		v_sem sub [prefer, persuade, promise, expect, sleep]
-                intro [vtense:tense, subj:role, obj:role, nar:num_assignable_roles, ref:role].   % This should not be empty!  Fill in features for this and
+                intro [vtense:tense, subj:role, obj:role, ref:role].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
 			prefer sub [].% intro [subj:role, obj:role].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
 			persuade sub [].% intro [persuader:role, persuadee:role].%[agent:role, beneficiary:role, theme:role].
@@ -121,8 +121,8 @@ cat> np.
 vp_rule rule
 (vp, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap))%mood:(tense:Tense))
 ===>
-cat> (v, vsem:(vtense:Tense, obj:theme)),
-cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap)).
+cat> (v, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap)),
+cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:Obj, ref:Gap)).
 
 
 % for expect only, handle accepting inf_clause of form "the teacher to sleep"
@@ -132,11 +132,11 @@ cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap)).
 % *"the student preferred the teacher to sleep"
 % "the student expected the teacher to sleep" is correct, but not of this form, coincidence it's accepted here
 vp_rule rule
-(vp, mood:(tense:Tense))
+(vp, vsem:(vtense:Tense, subj:Subj, obj:beneficiary, ref:Gap))
 ===>
 cat> (v, vsem:(vtense:Tense, obj:beneficiary)),
 cat> np,
-cat> inf_clause.
+cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:beneficiary, ref:Gap)).
 
 % VP -> V complement?
 % "...'expected' 'the teacher to sleep'"
