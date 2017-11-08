@@ -122,7 +122,7 @@ vp_rule rule
 (vp, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap))%mood:(tense:Tense))
 ===>
 cat> (v, vsem:(vtense:Tense, obj:theme)),
-cat> (inf_clause, vsem:(obj:theme)).
+cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap)).
 
 
 % for expect only, handle accepting inf_clause of form "the teacher to sleep"
@@ -180,18 +180,18 @@ cat> n.
 % "...to sleep"
 % can't use with any other verb here, cause they aren't in infinitive form (not base)
 inf_clause_rule rule
-(inf_clause, vsem:(obj:theme))
+(inf_clause, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap))
 ===>
 cat> toinf,
 cat> (v, vsem:(vtense:present)).
 
 
 inf_clause_rule rule
-(inf_clause, vsem:(obj:expectee))
+(inf_clause, vsem:(vtense:past, subj:Subj, obj:Gap, ref:Gap))
 ===>
 cat> np,
 cat> toinf,
-cat> (v, vsem:(vtense:present)).
+cat> (v, vsem:(vtense:present, obj:Gap)).
 
 % special cases
 % "the student promised" is definitely grammatical -> sentence fragment?
