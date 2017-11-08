@@ -83,7 +83,7 @@ sleep ---> (v, vsem:(vtense:present, obj:Role, ref:expectee)). % when this =agen
 srule rule
 (s, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap))
 ===>
-cat> np,
+cat> (np, nsem:Subj),
 cat> (vp, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap)).%mood:(tense:past)).
 
 % VP -> V NP
@@ -116,7 +116,7 @@ cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap)).
 vp_rule rule
 (vp, vsem:(vtense:Tense, subj:Subj, obj:beneficiary, ref:Gap))
 ===>
-cat> (v, vsem:(vtense:Tense, obj:beneficiary)),
+cat> (v, vsem:(vtense:Tense, subj:Subj, obj:beneficiary, ref:Gap)),
 cat> np,
 cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:beneficiary, ref:Gap)).
 
@@ -136,10 +136,10 @@ cat> (s, mood:(tense:Tense)).
 % "the student"
 % won't ever have NP -> N in this grammar, so we ignore it
 np_rule rule
-np
+(np, nsem:Role)
 ===>
 cat> det,
-cat> n.
+cat> (n, nsem:Role).
 
 % And in the following examples, the whole infinitive clause [again in bold]
 % is understood as the direct object of hates, loves and expected.
