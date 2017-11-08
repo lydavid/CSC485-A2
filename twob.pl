@@ -77,7 +77,7 @@ persuaded ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)). % don't nee
 promised ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)).
 expected ---> (v, vsem:(vtense:past, subj:agent, obj:theme)).
 to ---> toinf.
-sleep ---> (v, vsem:(vtense:present, obj:agent)).
+sleep ---> (v, vsem:(vtense:present, obj:Role)).
 
 % add rules
 
@@ -92,9 +92,9 @@ cat> (vp, mood:(tense:past)).
 % "...'persuaded/promised/preferred' 'the teacher'" -> don't actually need to handle "promised the teacher", cause for this assignment, promise should assign 3 thematic roles
 % *"the student expected the teacher" -> actually kinda makes sense
 vp_rule rule
-(vp, mood:(tense:past))
+(vp, mood:(tense:Tense))
 ===>
-cat> (v, vsem:(vtense:past)),
+cat> (v, vsem:(vtense:Tense)),
 cat> np.
 
 
@@ -102,9 +102,9 @@ cat> np.
 % "...'preferred/expected/promised' 'to sleep'" -> all confirmed grammatically correct on bb
 % *"the student persuaded to sleep"
 vp_rule rule
-(vp, mood:(tense:past))
+(vp, mood:(tense:Tense))
 ===>
-cat> (v, vsem:(vtense:past)),
+cat> (v, vsem:(vtense:Tense)),
 cat> inf_clause.
 
 % VP -> V NP inf_clause
@@ -112,9 +112,9 @@ cat> inf_clause.
 % *"the student preferred the teacher to sleep"
 % "the student expected the teacher to sleep" is correct, but not of this form, coincidence it's accepted here
 vp_rule rule
-(vp, mood:(tense:past))
+(vp, mood:(tense:Tense))
 ===>
-cat> (v, vsem:(vtense:past, obj:beneficiary)),
+cat> (v, vsem:(vtense:Tense, obj:beneficiary)),
 cat> np,
 cat> inf_clause.
 
