@@ -103,7 +103,7 @@ cat> np.
 vp_rule rule
 (vp, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap))%mood:(tense:Tense))
 ===>
-cat> (v, vsem:(vtense:Tense, subj:Subj, obj:Obj, ref:Gap)),
+cat> (v, vsem:(vtense:Tense, subj:Subj, obj:theme, ref:Gap)),
 cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:Obj, ref:Gap)).
 
 
