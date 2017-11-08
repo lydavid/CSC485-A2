@@ -105,12 +105,12 @@ cat> np,
 cat> (vp, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap)).%mood:(tense:past)).
 
 % VP -> V NP
-% "...'persuaded/promised/preferred' 'the teacher'" -> don't actually need to handle "promised the teacher", cause for this assignment, promise should assign 3 thematic roles
+% "...'persuaded/promised/preferred' 'the teacher'" -> don't actually need to handle "promised the teacher", cause for this assignment, promise should assign 3 thematic roles -> same with persuaded
 % *"the student expected the teacher" -> actually kinda makes sense
 vp_rule rule
-(vp, mood:(tense:Tense))
+(vp, vsem:(vtense:Tense, subj:preferrer))
 ===>
-cat> (v, vsem:(vtense:Tense)),
+cat> (v, vsem:(vtense:Tense, subj:preferrer)),
 cat> np.
 
 
