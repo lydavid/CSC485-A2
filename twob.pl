@@ -114,7 +114,7 @@ cat> inf_clause.
 % "...'persuaded/promised' 'the teacher' 'to sleep'"
 % *"the student preferred the teacher to sleep"
 % "the student expected the teacher to sleep" is correct, but not of this form, coincidence it's accepted here
-vp_rule rules
+vp_rule rule
 (vp, mood:(tense:past))
 ===>
 cat> (v, vsem:(vtense:past),
