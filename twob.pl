@@ -77,7 +77,7 @@ preferred ---> (v, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Subj))
 %promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, ref:promiser)).
 %expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, ref:expectee)).
 to ---> toinf.
-sleep ---> (v, vsem:(vtense:present, obj:Role, ref:expectee)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
+sleep ---> (v, vsem:(vtense:present, obj:Role, ref:Expectee)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
 
 % S -> NP VP
