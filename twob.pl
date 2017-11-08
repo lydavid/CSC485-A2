@@ -54,6 +54,9 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
             preferree sub [].
             expectee sub []. % obj of sleep
 
+    num_assignable_roles sub [two,three].
+        two sub [].
+        three sub[].
 
 	% semantics for verbs and nouns
 	sem sub [v_sem, n_sem].
@@ -64,7 +67,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 
 		% semantics for verbs
 		v_sem sub [prefer, persuade, promise, expect, sleep]
-                intro [vtense:tense, subj:role, obj:role].   % This should not be empty!  Fill in features for this and
+                intro [vtense:tense, subj:role, obj:role, nar:num_assignable_roles].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
 			prefer sub [].% intro [subj:role, obj:role].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
 			persuade sub [].% intro [persuader:role, persuadee:role].%[agent:role, beneficiary:role, theme:role].
@@ -86,10 +89,10 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree)).
-persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee)). % don't need to assign role to theme (which will be an inf_clause)
-promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee)).
-expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee)).
+preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree, nar:two)).
+persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, nar:three)). % don't need to assign role to theme (which will be an inf_clause)
+promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, nar:three)).
+expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, nar:two)).
 to ---> toinf.
 sleep ---> (v, vsem:(vtense:present, obj:Role)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
@@ -114,11 +117,12 @@ cat> np.
 
 % VP -> V inf_clause
 % "...'preferred/expected/promised' 'to sleep'" -> all confirmed grammatically correct on bb
+% just handle preferred/expected for now
 % *"the student persuaded to sleep"
 vp_rule rule
 (vp, mood:(tense:Tense))
 ===>
-cat> (v, vsem:(vtense:Tense)),
+cat> (v, vsem:(vtense:Tense, obj:theme)),
 cat> inf_clause.
 
 % VP -> V NP inf_clause
@@ -154,7 +158,7 @@ cat> (s, mood:(tense:Tense)).
 % NP -> Det N
 % "the teacher"
 % "the student"
-% won't ever have NP -> N in this grammar, so ignore it
+% won't ever have NP -> N in this grammar, so ignore it!
 np_rule rule
 np
 ===>
@@ -180,4 +184,4 @@ cat> toinf,
 cat> (v, vsem:(vtense:present)).
 
 % special cases
-% "the student promised" is definitely grammatical
+% "the student promised" is definitely grammatical -> sentence fragment?
