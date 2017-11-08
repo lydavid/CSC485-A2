@@ -57,11 +57,11 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 		v_sem sub [prefer, persuade, promise, expect, sleep]
                 intro [vtense:tense].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
-			prefer sub [].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
-			persuade sub [].%[agent:role, beneficiary:role, theme:role].
-			promise sub [].%[agent:role, beneficiary:role, theme:role].
-			expect sub [].%[agent:role, theme:role].
-			sleep sub []. %[experiencer:role]. % in the interrogative sample, these take on index (sing/plural, trd/fst, ...)
+			prefer sub [subj:role, obj:role].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
+			persuade sub [subj:role, obj:role].%[agent:role, beneficiary:role, theme:role].
+			promise sub [subj:role, obj:role].%[agent:role, beneficiary:role, theme:role].
+			expect sub [subj:role, obj:role].%[agent:role, theme:role].
+			sleep sub [obj:role]. %[experiencer:role]. % in the interrogative sample, these take on index (sing/plural, trd/fst, ...)
 
 		% semantics for nouns
 		n_sem sub [student, teacher].
@@ -72,12 +72,12 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:(vtense:past, prefer)).
-persuaded ---> (v, vsem:(vtense:past, persuade)). % don't need to assign role to theme (which will be an inf_clause)
-promised ---> (v, vsem:(vtense:past, promise)).
-expected ---> (v, vsem:(vtense:past, expect)).
+preferred ---> (v, vsem:(vtense:past, subj:agent, obj:theme)).
+persuaded ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)). % don't need to assign role to theme (which will be an inf_clause)
+promised ---> (v, vsem:(vtense:past, subj:agent, obj:beneficiary)).
+expected ---> (v, vsem:(vtense:past, subj:agent, obj:theme)).
 to ---> toinf.
-sleep ---> (v, vsem:(vtense:present, sleep)).
+sleep ---> (v, vsem:(vtense:present, obj:Role)).
 
 % add rules
 
