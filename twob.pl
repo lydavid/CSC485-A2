@@ -2,7 +2,7 @@
 :- ale_flag(subtypecover,_,off).
 :- discontiguous sub/2,intro/2.
 
-bot sub [mood, tense, sem, cat, pos, verbal, nominal].
+bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 
 	% parts of speech
     pos sub [n,p,v,det,toinf].
@@ -41,7 +41,10 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
         %   They came to speak to me.
         %   It's important to eat well.
 
-
+    role sub [agent, beneficiary, theme].
+        agent sub [].
+        beneficiary sub [].
+        theme sub [].
 
 	% semantics for verbs and nouns
 	sem sub [v_sem, n_sem].
@@ -54,11 +57,11 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 		v_sem sub [prefer, persuade, promise, expect, sleep]
                 intro [vtense:tense].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
-			prefer sub []. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
-			persuade sub [].
-			promise sub [].
-			expect sub [].
-			sleep sub [].
+			prefer sub [subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
+			persuade sub [].%[agent:role, beneficiary:role, theme:role].
+			promise sub [].%[agent:role, beneficiary:role, theme:role].
+			expect sub [].%[agent:role, theme:role].
+			sleep sub [experiencer:role]. % in the interrogative sample, these take on index (sing/plural, trd/fst, ...)
 
 		% semantics for nouns
 		n_sem sub [student, teacher].
@@ -69,12 +72,12 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:(vtense:past)).
-persuaded ---> (v, vsem:(vtense:past)).
-promised ---> (v, vsem:(vtense:past)).
-expected ---> (v, vsem:(vtense:past)).
+preferred ---> (v, vsem:(vtense:past, prefer)).
+persuaded ---> (v, vsem:(vtense:past, persuade)). % don't need to assign role to theme (which will be an inf_clause)
+promised ---> (v, vsem:(vtense:past, promise)).
+expected ---> (v, vsem:(vtense:past, expect)).
 to ---> toinf.
-sleep ---> (v, vsem:(vtense:present)).
+sleep ---> (v, vsem:(vtense:present, experiencer:Role)).
 
 % add rules
 
@@ -86,13 +89,17 @@ cat> np,
 cat> (vp, mood:(tense:past)).
 
 % VP -> V NP
-% "...'persuaded/promised/preferred' 'the teacher'"
+% "...'persuaded/promised/preferred' 'the teacher'" -> don't actually need to handle "promised the teacher", cause for this assignment, promise should assign 3 thematic roles
 % *"the student expected the teacher" -> actually kinda makes sense
 vp_rule rule
 (vp, mood:(tense:past))
 ===>
 cat> (v, vsem:(vtense:past)),
 cat> np.
+
+
+
+
 
 % VP -> V inf_clause
 % "...'preferred/expected/promised' 'to sleep'" -> all confirmed grammatically correct on bb
@@ -107,6 +114,12 @@ cat> inf_clause.
 % "...'persuaded/promised' 'the teacher' 'to sleep'"
 % *"the student preferred the teacher to sleep"
 % "the student expected the teacher to sleep" is correct, but not of this form, coincidence it's accepted here
+vp_rule rules
+(vp, mood:(tense:past))
+===>
+cat> (v, vsem:(vtense:past),
+cat> np,
+cat> inf_clause.
 
 % VP -> V complement?
 % "...'expected' 'the teacher to sleep'"
@@ -131,6 +144,15 @@ np
 ===>
 cat> det,
 cat> n.
+
+
+% And in the following examples, the whole infinitive clause [again in bold]
+% is understood as the direct object of hates, loves and expected.
+%   - Jim hates to wash his car.
+%   - Rosie loves to plan parties.
+%   - Phil expected Martha to stay at home all day.
+% from these, it seems "the teacher to sleep" is an inf_clause
+% as well as "to sleep"
 
 % inf_clause -> toinf V
 % "...to sleep"
