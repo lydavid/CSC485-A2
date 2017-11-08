@@ -114,7 +114,7 @@ cat> inf_clause.
 vp_rule rule
 (vp, mood:(tense:past))
 ===>
-cat> (v, vsem:(vtense:past)),
+cat> (v, vsem:(vtense:past, obj:beneficiary)),
 cat> np,
 cat> inf_clause.
 
