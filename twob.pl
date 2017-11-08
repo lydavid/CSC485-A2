@@ -107,7 +107,7 @@ cat> np.
 vp_rule rule
 (vp, mood:(tense:past))
 ===>
-cat> (v, vsem:(vtense:past, obj:beneficiary),
+cat> (v, vsem:(vtense:past, subj:agent, obj:beneficiary),
 cat> inf_clause.
 
 % VP -> V NP inf_clause
