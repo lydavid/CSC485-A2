@@ -7,7 +7,7 @@ bot sub [s,np,vp,pp].
     vp sub [].
     pp sub [].
 
-bot sub [np_nom,np_acc]
+bot sub [np_nom,np_acc].
     np_nom sub [].
     np_acc sub [].
 
