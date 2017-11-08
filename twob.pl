@@ -98,16 +98,13 @@ cat> (v, vsem:(vtense:past)),
 cat> np.
 
 
-
-
-
 % VP -> V inf_clause
 % "...'preferred/expected/promised' 'to sleep'" -> all confirmed grammatically correct on bb
 % *"the student persuaded to sleep"
 vp_rule rule
 (vp, mood:(tense:past))
 ===>
-cat> (v, vsem:(vtense:past, subj:agent, obj:beneficiary),
+cat> (v, vsem:(vtense:past)),
 cat> inf_clause.
 
 % VP -> V NP inf_clause
@@ -117,7 +114,7 @@ cat> inf_clause.
 vp_rule rule
 (vp, mood:(tense:past))
 ===>
-cat> (v, vsem:(vtense:past),
+cat> (v, vsem:(vtense:past)),
 cat> np,
 cat> inf_clause.
 
