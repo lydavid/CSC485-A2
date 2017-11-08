@@ -69,7 +69,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 
 		% semantics for verbs
 		v_sem sub [prefer, persuade, promise, expect, sleep]
-                intro [vtense:tense, subj:role, obj:role, nar:num_assignable_roles].   % This should not be empty!  Fill in features for this and
+                intro [vtense:tense, subj:role, obj:role, nar:num_assignable_roles, ref:role].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
 			prefer sub [].% intro [subj:role, obj:role].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
 			persuade sub [].% intro [persuader:role, persuadee:role].%[agent:role, beneficiary:role, theme:role].
@@ -91,10 +91,10 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
-preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree, nar:two)).
-persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, nar:three)). % don't need to assign role to theme (which will be an inf_clause)
-promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, nar:three)).
-expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, nar:two)).
+preferred ---> (v, vsem:(vtense:past, subj:preferrer, obj:preferree, nar:two, ref:preferrer)).
+persuaded ---> (v, vsem:(vtense:past, subj:persuader, obj:persuadee, nar:three, ref:persuadee)). % don't need to assign role to theme (which will be an inf_clause)
+promised ---> (v, vsem:(vtense:past, subj:promiser, obj:promisee, nar:three, ref:promiser)).
+expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, nar:two, ref:expectee)).
 to ---> toinf.
 sleep ---> (v, vsem:(vtense:present, obj:Role)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
@@ -125,13 +125,8 @@ vp_rule rule
 (vp, mood:(tense:Tense))
 ===>
 cat> (v, vsem:(vtense:Tense, obj:theme)),
-cat> inf_clause.
+cat> (inf_clause, vsem:(obj:theme)).
 
-vp_rule rule
-(vp, mood:(tense:Tense))
-===>
-cat> (v, vsem:(vtense:Tense, obj:expectee)),
-cat> inf_clause_alt.
 
 % for expect only, handle accepting inf_clause of form "the teacher to sleep"
 
@@ -188,14 +183,14 @@ cat> n.
 % "...to sleep"
 % can't use with any other verb here, cause they aren't in infinitive form (not base)
 inf_clause_rule rule
-inf_clause
+(inf_clause, vsem:(obj:theme))
 ===>
 cat> toinf,
 cat> (v, vsem:(vtense:present)).
 
 
 inf_clause_rule rule
-inf_clause_alt
+(inf_clause, vsem:(obj:expectee))
 ===>
 cat> np,
 cat> toinf,
