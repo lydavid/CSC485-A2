@@ -20,6 +20,8 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 			vp intro [mood:indicative].  % verb phrase has var mood that could take on values from indicative
 		np sub [].    % noun phrase has no subtype
 
+        % notice that inf_clause has a var, put fragments like "to sleep" as mood:infinitve, and "the teacher to sleep" with no mood
+
     verbal sub [v, vproj] intro [vsem:v_sem].    % verbal has subtype verb, vproj?, with var vsem that could take on values from v_sem
     nominal sub [n, np] intro [nsem:n_sem].      % nominal has subtypes noun, noun phrase, with var nsem
 
@@ -117,16 +119,24 @@ cat> np.
 
 % VP -> V inf_clause
 % "...'preferred/expected/promised' 'to sleep'" -> all confirmed grammatically correct on bb
-% just handle preferred/expected for now
+% just handle preferred/expected for now (both of which has theme as its obj)
 % *"the student persuaded to sleep"
 vp_rule rule
 (vp, mood:(tense:Tense))
 ===>
 cat> (v, vsem:(vtense:Tense, obj:theme)),
+cat> (inf_clause, mood:infinitve).
+
+vp_rule rule
+(vp, mood:(tense:Tense))
+===>
+cat> (v, vsem:(vtense:Tense, obj:expectee)),
 cat> inf_clause.
 
+% for expect only, handle accepting inf_clause of form "the teacher to sleep"
+
 % VP -> V NP inf_clause
-% "...'persuaded/promised' 'the teacher' 'to sleep'"
+% "...'persuaded/promised' 'the teacher' 'to sleep'" (both have beneficiary as its obj)
 % *"the student preferred the teacher to sleep"
 % "the student expected the teacher to sleep" is correct, but not of this form, coincidence it's accepted here
 vp_rule rule
@@ -134,7 +144,7 @@ vp_rule rule
 ===>
 cat> (v, vsem:(vtense:Tense, obj:beneficiary)),
 cat> np,
-cat> inf_clause.
+cat> (inf_clause, mood:infinitve).
 
 % VP -> V complement?
 % "...'expected' 'the teacher to sleep'"
@@ -178,8 +188,16 @@ cat> n.
 % "...to sleep"
 % can't use with any other verb here, cause they aren't in infinitive form (not base)
 inf_clause_rule rule
+(inf_clause, mood:infinitve)
+===>
+cat> toinf,
+cat> (v, vsem:(vtense:present)).
+
+
+inf_clause_rule rule
 inf_clause
 ===>
+cat> np,
 cat> toinf,
 cat> (v, vsem:(vtense:present)).
 
