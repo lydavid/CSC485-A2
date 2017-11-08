@@ -5,7 +5,7 @@
 bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 
 	% parts of speech
-    pos sub [n,p,v,det,toinf].
+    pos sub [n, p, v, det, toinf].
 		toinf sub [].	% infinitival to
         n sub [].       % noun
         v sub [].       % verb
@@ -13,12 +13,12 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
         det sub [].     % determinant
 
     % phrasal categories
-    cat sub [vproj, np]. % subtypes: vproj?, noun phrase
-        vproj sub [inf_clause, s, vp] intro [mood:mood].  % vproj has subtype infinitive clause, sentence, verb phrase with var mood that could take on values from mood
-			s intro [mood:indicative].   % sentence had var mood that could take on values from indicative
-            inf_clause intro [mood:infinitive]. % infinitive clause has var mood that could take on values from infinitive
-			vp intro [mood:indicative].  % verb phrase has var mood that could take on values from indicative
-		np sub [].    % noun phrase has no subtype
+    cat sub [vproj, np].
+        vproj sub [inf_clause, s, vp] intro [mood:mood].
+			s intro [mood:indicative].
+            inf_clause intro [mood:infinitive].
+			vp intro [mood:indicative].
+		np sub [].
 
         % notice that inf_clause has a var, put fragments like "to sleep" as mood:infinitve, and "the teacher to sleep" with no mood
 
@@ -43,6 +43,8 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
         %   They came to speak to me.
         %   It's important to eat well.
 
+    % The possible roles for our verbs' obj/subj
+    % the hierarchy allows our grammar to accept a broader category of roles such as "theme" as the obj
     role sub [agent, beneficiary, theme].
         agent sub [preferrer, persuader, promiser, expecter].
             preferrer sub []. % obj of sleep
@@ -56,16 +58,14 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
             preferree sub [].
             expectee sub []. % obj of sleep
 
-
 	% semantics for verbs and nouns
 	sem sub [v_sem, n_sem].
 
-        % only add features for v_sem and its subtypes
-        % nope, can add types anywhere such as subtyping existing types,
-        % just don't alter what's already given (ie rearrange hierarchy)
-
 		% semantics for verbs
 		v_sem sub [prefer, persuade, promise, expect, sleep]
+                % subj: which role is the subject of the verb
+                % obj: which role is the object of the verb
+                % ref: which role of the verb will be referenced as the obj of a later verb (sleep)
                 intro [vtense:tense, subj:role, obj:role, ref:role].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
 			prefer sub [].% intro [subj:role, obj:role].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
@@ -84,7 +84,7 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 			student sub [].
 			teacher sub [].
 
-% add lexicon? using sem that matches itself
+% Lexicon
 the ---> det.
 student ---> (n, nsem:student).
 teacher ---> (n, nsem:teacher).
@@ -95,7 +95,6 @@ expected ---> (v, vsem:(vtense:past, subj:expecter, obj:expectee, ref:expectee))
 to ---> toinf.
 sleep ---> (v, vsem:(vtense:present, obj:Role, ref:expectee)). % when this =agent, that means the agent of preferred/... is its obj, when it's =beneficiary, that means the agent of preferred/... is its obj (if it has any)
 
-% add rules
 
 % S -> NP VP
 srule rule
@@ -138,11 +137,6 @@ cat> (v, vsem:(vtense:Tense, obj:beneficiary)),
 cat> np,
 cat> (inf_clause, vsem:(vtense:Tense, subj:Subj, obj:beneficiary, ref:Gap)).
 
-% VP -> V complement?
-% "...'expected' 'the teacher to sleep'"
-% persuaded/promised needs to assign beneficiary AND theme, but only has a complement constituent here
-% *"the student preferred the teacher to sleep"
-
 % VP -> V S
 % "...'expected' 'the teacher persuaded the student to sleep'"
 % *"the student promised the teacher persuaded the student to sleep" -> promise needs beneficiary AND theme
@@ -154,19 +148,15 @@ vp_rule rule
 cat> (v, vsem:(vtense:Tense, obj:expectee)),
 cat> (s, mood:(tense:Tense)).
 
-% VP -> V NP S
-% "...'promised' 'the teacher' 'the student preferred to sleep'"
-
 % NP -> Det N
 % "the teacher"
 % "the student"
-% won't ever have NP -> N in this grammar, so ignore it!
+% won't ever have NP -> N in this grammar, so we ignore it
 np_rule rule
 np
 ===>
 cat> det,
 cat> n.
-
 
 % And in the following examples, the whole infinitive clause [again in bold]
 % is understood as the direct object of hates, loves and expected.
@@ -178,20 +168,19 @@ cat> n.
 
 % inf_clause -> toinf V
 % "...to sleep"
-% can't use with any other verb here, cause they aren't in infinitive form (not base)
+% V can't be any other verb here, cause they aren't in infinitive form
 inf_clause_rule rule
 (inf_clause, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap))
 ===>
 cat> toinf,
 cat> (v, vsem:(vtense:present)).
 
-
+% inf_clause -> NP toinf V
+% "...the teacher to sleep"
+% only expect can use this rule
 inf_clause_rule rule
 (inf_clause, vsem:(vtense:past, subj:Subj, obj:Obj, ref:Gap))
 ===>
 cat> np,
 cat> toinf,
 cat> (v, vsem:(vtense:present, ref:Gap)).
-
-% special cases
-% "the student promised" is definitely grammatical -> sentence fragment?
