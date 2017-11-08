@@ -125,13 +125,13 @@ vp_rule rule
 (vp, mood:(tense:Tense))
 ===>
 cat> (v, vsem:(vtense:Tense, obj:theme)),
-cat> (inf_clause, mood:infinitve).
+cat> inf_clause.
 
 vp_rule rule
 (vp, mood:(tense:Tense))
 ===>
 cat> (v, vsem:(vtense:Tense, obj:expectee)),
-cat> inf_clause.
+cat> inf_clause_alt.
 
 % for expect only, handle accepting inf_clause of form "the teacher to sleep"
 
@@ -144,7 +144,7 @@ vp_rule rule
 ===>
 cat> (v, vsem:(vtense:Tense, obj:beneficiary)),
 cat> np,
-cat> (inf_clause, mood:infinitve).
+cat> inf_clause.
 
 % VP -> V complement?
 % "...'expected' 'the teacher to sleep'"
@@ -188,14 +188,14 @@ cat> n.
 % "...to sleep"
 % can't use with any other verb here, cause they aren't in infinitive form (not base)
 inf_clause_rule rule
-(inf_clause, mood:infinitve)
+inf_clause
 ===>
 cat> toinf,
 cat> (v, vsem:(vtense:present)).
 
 
 inf_clause_rule rule
-inf_clause
+inf_clause_alt
 ===>
 cat> np,
 cat> toinf,
