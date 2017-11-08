@@ -57,11 +57,11 @@ bot sub [mood, tense, sem, cat, pos, verbal, nominal, role].
 		v_sem sub [prefer, persuade, promise, expect, sleep]
                 intro [vtense:tense].   % This should not be empty!  Fill in features for this and
                                   %  the following subtypes:
-			prefer sub [subj:role, obj:role].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
-			persuade sub [subj:role, obj:role].%[agent:role, beneficiary:role, theme:role].
-			promise sub [subj:role, obj:role].%[agent:role, beneficiary:role, theme:role].
-			expect sub [subj:role, obj:role].%[agent:role, theme:role].
-			sleep sub [obj:role]. %[experiencer:role]. % in the interrogative sample, these take on index (sing/plural, trd/fst, ...)
+			prefer sub [] intro [subj:role, obj:role].%[subj:role, obj:role]. %[preferrer:np, preferree:np]. % preferrer must be a noun phrase, preferree could be anything?
+			persuade sub [] intro [subj:role, obj:role].%[agent:role, beneficiary:role, theme:role].
+			promise sub [] intro [subj:role, obj:role].%[agent:role, beneficiary:role, theme:role].
+			expect sub [] intro [subj:role, obj:role].%[agent:role, theme:role].
+			sleep sub [] intro [obj:role]. %[experiencer:role]. % in the interrogative sample, these take on index (sing/plural, trd/fst, ...)
 
 		% semantics for nouns
 		n_sem sub [student, teacher].
