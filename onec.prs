@@ -1,0 +1,95 @@
+% David Ly, lydavid1, 1001435501
+<'she fed the dog with puppies with him'
+{ :'srule:she fed the dog with puppies with him'
+    s
+    { :'np_rule//3:she'
+        np(
+            head: n(
+                case: $1 = nom,
+                number: plural,
+                type: type))
+        { :'lexicon:she'
+            n(
+                case: $1,
+                number: plural,
+                type: pronoun)
+        }
+    }
+    { :'vp_rule:fed the dog with puppies with him'
+        vp(
+            obj_vp: np(
+                head: n(
+                    case: acc,
+                    number: number,
+                    type: type)))
+        { :'lexicon:fed'
+            v
+        }
+        { :'np_rule//2:the dog with puppies with him'
+            np(
+                head: n(
+                    case: acc,
+                    number: number,
+                    type: noun))
+            { :'lexicon:the'
+                det
+            }
+            { :'lexicon:dog'
+                n(
+                    case: case,
+                    number: sing,
+                    type: noun)
+            }
+            { :'pp_rule:with puppies with him'
+                pp(
+                    obj_pp: np(
+                        head: n(
+                            case: acc,
+                            number: number,
+                            type: type)))
+                { :'lexicon:with'
+                    p
+                }
+                { :'np_rule//0:puppies with him'
+                    np(
+                        head: n(
+                            case: acc,
+                            number: plural,
+                            type: noun))
+                    { :'lexicon:puppies'
+                        n(
+                            case: case,
+                            number: plural,
+                            type: noun)
+                    }
+                    { :'pp_rule:with him'
+                        pp(
+                            obj_pp: np(
+                                head: n(
+                                    case: acc,
+                                    number: number,
+                                    type: type)))
+                        { :'lexicon:with'
+                            p
+                        }
+                        { :'np_rule//3:him'
+                            np(
+                                head: n(
+                                    case: $15 = acc,
+                                    number: plural,
+                                    type: type))
+                            { :'lexicon:him'
+                                n(
+                                    case: $15,
+                                    number: plural,
+                                    type: pronoun)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+>
+

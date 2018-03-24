@@ -1,0 +1,74 @@
+% David Ly, lydavid1, 1001435501
+<'the student persuaded the teacher to sleep'
+{ :'srule:the student persuaded the teacher to sleep'
+    s(
+        mood: indicative(
+            tense: tense),
+        vsem: v_sem(
+            obj: $3 = beneficiary,
+            ref: $4 = persuadee,
+            subj: $5 = persuader,
+            vtense: past))
+    { :'np_rule:the student'
+        np(
+            nsem: n_sem)
+        { :'lexicon:the'
+            det
+        }
+        { :'lexicon:student'
+            n(
+                nsem: student)
+        }
+    }
+    { :'vp_rule//2:persuaded the teacher to sleep'
+        vp(
+            mood: indicative(
+                tense: tense),
+            vsem: v_sem(
+                obj: $3,
+                ref: $4,
+                subj: $5,
+                vtense: $7 = past))
+        { :'lexicon:persuaded'
+            v(
+                vsem: v_sem(
+                    obj: persuadee,
+                    ref: $4,
+                    subj: $5,
+                    vtense: $7))
+        }
+        { :'np_rule:the teacher'
+            np(
+                nsem: n_sem)
+            { :'lexicon:the'
+                det
+            }
+            { :'lexicon:teacher'
+                n(
+                    nsem: teacher)
+            }
+        }
+        { :'inf_clause_rule//0:to sleep'
+            inf_clause(
+                mood: infinitive,
+                vsem: v_sem(
+                    obj: beneficiary,
+                    ref: $4,
+                    subj: $5,
+                    vtense: $7))
+            { :'lexicon:to'
+                toinf
+            }
+            { :'lexicon:sleep'
+                v(
+                    vsem: v_sem(
+                        obj: role,
+                        ref: expectee,
+                        subj: role,
+                        vtense: present))
+            }
+        }
+    }
+}
+>
+
